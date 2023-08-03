@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goals</title>
+    <title>Tracking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,22 @@
 </head>
 <body>
     <%- include ("partials/header.ejs")%>
-    <h1>This is goals page</h1>
+    <div class="tracking-container">
+        <h1>Here are your past workouts</h1>
+        <% for (var i = 0; i <pastworkouts.length; i++){%>
+            <div>Date of workout : <%=pastworkouts[i].date %></div>
+            <div>Total workout time :<%=pastworkouts[i].time%></div>
+            <div>
+                <%for (var j = 0; j < pastworkouts[i].exerciseList.length;j++){%>
+                    <%if(pastworkouts[i].repsList[j]!=0){%>
+                    <div><%=pastworkouts[i].exerciseList[j]%>
+                        <div>Reps: <%=pastworkouts[i].repsList[j]%></div>
+                        <div>Intensity: <%=pastworkouts[i].intensityList[j]%></div>
+                    </div>
+                    <%}%>
+                <%}%>
+            </div>
+        <%}%>
+    </div>
 </body>
 </html>

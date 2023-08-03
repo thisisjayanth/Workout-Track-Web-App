@@ -1,6 +1,7 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-family: 'Fira Sans', sans-serif;
     font-family: 'Geologica', sans-serif;
     font-family: 'Lato', sans-serif;
@@ -9,24 +10,26 @@
 }
 
 /* 3e4743 cbc9c8 e7e6e4 0f0e10 */  
+/* #5f5a7c #d7d6e1 #ebeaf0 #686388 */
 
 /* start of header */
 .brand{
-    color: #3e4743 ;
+    color: #50487b ;
     font-size: 25px;
     font-weight: bold;
     padding-left: 20px;
 }
 .header{
-    background-color: #cbc9c8;
+    background-color: #d7d6e1;
     height: 10vh;
     display: grid;
     grid-template-columns: 1fr 2fr;
     align-items: center;
     justify-content: center;
+    color: #474646;
 }
 .header a{
-    color: black;
+    color: rgb(71, 70, 70);
     text-decoration: none;
     padding: 7px;
     border-radius: 5px;
@@ -37,21 +40,100 @@
     justify-items: center;
 }
 .nav-links > a:hover{
-    color: #e7e6e4;
-    background-color: #3e4743;
+    color: #ebeaf0;
+    background-color: #5f5a7c;
     font-weight: 100;
+}
+.bar{
+    justify-self: flex-end;
+    margin-right:30px;
+    position: relative;
+}
+.sidebar{
+    width: 200px;
+    background-color: #d7d6e1;
+    padding: 10px;
+    z-index:1;
+    position: fixed;
+    top: 60px;
+    right:0;
+    transform: translateX(100%);
+    border: solid 1px #5f5a7c;
+    border-radius: 5px;
+}
+.fa-close{
+    margin-left: 180px;
+    cursor: pointer;
+}
+.sidebar a{
+    display: block;
+    background-color: #5f5a7c;
+    color: white;
+    margin: 2px;
+}
+.show-content{
+    transition: 0.5s;
+    transition-timing-function: ease-in-out;
+    transform: translateX(0%);
+}
+@media screen and (max-width:650px){
+    .nav-links{
+        display:none;
+    }
+}
+@media screen and (min-width:650px){
+    .bar{
+        display:none; 
+    }
 }
 /* end of header */
 
-/* start of login-contianer */
-.login-container{
-    background-image: linear-gradient(to bottom, rgba(62, 71, 67,0.7), rgba(62, 71, 67,0.7)),url("../images/loginbg.jpg");
+
+/* for add exercise to workout log */
+#exerciseForm {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+#exerciseForm label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+#exerciseForm input,
+#exerciseForm select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+#exerciseForm  button {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #3e4743;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+#exerciseForm button:hover {
+    background-color: #0f0e10;
+  }
+/* end of add exercise to workout log  */
+
+
+/* start of login and addexercise form */
+.form-container{
+    background-image: linear-gradient(to bottom, rgba(62, 71, 67,0.7), rgba(62, 71, 67,0.7)),url("../images/formbg.jpg");
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    color: white;
 }
-.login{
+.form-body{
+    width: 250px;
     position:absolute;
     top: 50%;
     left: 50%;
@@ -62,9 +144,104 @@
     border-radius: 5px;
     text-align: center;
 }
-.login>button{
+.form-body>button{
     margin-top: 10px;
     border: solid 1px white;
     padding: 7px;
 }
-/* end of login-container */
+@media screen and (min-width:700px){
+    .form-body{
+        width:350px;
+    }
+}
+@media screen and (max-width:450px){
+    .form-body{
+        width:200px;
+    }
+}
+/* end of login and addexercise form */
+
+/* start of workout */
+.workout-log-container{
+    /* background-color: #e7e6e4; */
+    background-color: #ebeaf0;
+    color: #474646;
+    width: 100%;
+}
+.workout-body{
+    background-color: #d7d6e1;
+    width: 70%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+.workout-container{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+.item{ 
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+.item input, .item select{
+    padding: 5px;
+    border: solid 1px white;
+    border-radius: 5px;
+}
+.finish{
+    position: relative;
+    left: 50%;
+    transform: translatex(-50%);
+    margin-bottom: 20px;
+}
+.workout-log-container button{
+    padding: 7px; 
+    border:solid 0px black;
+    border-radius: 5px;
+    background-color: #5f5a7c;
+    color:white;    
+    cursor: pointer;
+}
+.time-container{
+    margin: 10px auto;
+    text-align: center;
+}
+.timer{
+    margin:10px;
+}
+@media screen and (max-width:600px){
+    .workout-body{
+        width:60%;
+    }
+    .workout-container{
+        grid-template-columns: repeat(1, auto);
+    }
+}
+/* end of workout */
+
+/* start of hero container */
+.hero-container{
+    background-color: #ebeaf0;
+    color: #474646;
+    padding: 20px;
+}
+/* end of hero container */
+
+
+/* start of service container */
+.service-container{
+    background-color: #ebeaf0;
+    height: 90vh;
+    padding: 20px;
+}
+.service-container div{
+    padding: 20px;
+}
+/* end of service container */
+
+/* start of tracking container */
+.tracking-container{
+    background-color: #ebeaf0;
+}
+/* end of tracking container */

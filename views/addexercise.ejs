@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add exercise to workout log</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Geologica&family=Lato:ital@1&family=Noto+Sans&family=Work+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="form-container"> 
+        <div class="form-body">
+            <form id="exerciseForm">
+                <h2>Add New Exercise</h2>
+                <div>
+                  <label for="exerciseName">Exercise Name:</label>
+                  <input type="text" id="exerciseName" name="exerciseName" required>
+                </div>
+                <div>
+                  <label for="exerciseDuration">Duration (minutes):</label>
+                  <input type="number" id="exerciseDuration" name="exerciseDuration" required>
+                </div>
+                <div>
+                  <label for="exerciseIntensity">Intensity:</label>
+                  <select id="exerciseIntensity" name="exerciseIntensity" required>
+                    <option value="">Select intensity</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+                <div>
+                  <button type="submit">Add Exercise</button>
+                </div>
+              </form>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById("exerciseForm");
+        form.addEventListener("submit", async(event)=>{
+            event.preventDefault();
+            console.log(form.exerciseName.value);
+            console.log(form.exerciseIntensity.value);
+            console.log(form.exerciseDuration.value);
+            const res = await fetch("/home/addexercise",{
+              method: "POST",
+              body: JSON.stringify({name:form.exerciseName.value, intensity:form.exerciseIntensity.value, duration:form.exerciseDuration.value}),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+            const data = await res.json();
+            console.log(data)
+            // await fetch("/home", {
+            //   method: "GET"
+            // })
+            location.replace("http://localhost:4000/home")
+        });
+
+    </script>
+</body>
+</html>

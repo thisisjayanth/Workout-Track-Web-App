@@ -11,7 +11,9 @@ connectDB();
 const app = express();
 
 require('./models/User')
+require('./models/exercise')
 require('./config/passport');
+require('./models/pastworkout')
 
 //middle wares
 app.use(session({
@@ -31,23 +33,23 @@ app.set("view engine", 'ejs');
 app.use(express.static('public'))
 app.use(express.json());
 
-app.get('/', ensureAuth,(req,res)=>{
-    res.render('home')
-})
 
 app.get('/login', ensureGuest,(req,res)=>{
     res.render('login')
 });
 
 //routes
+app.use('/home', require('./routes/home'));
 app.use('/auth',require('./routes/auth'));
 app.use('/goals', require('./routes/goals'));
 app.use('/progress', require('./routes/progress'));
-app.use('/training', require('./routes/training'));
+app.use('/tracking', require('./routes/tracking'));
 
 app.get('*',(req,res)=>{
     res.render('notfound')
 })
+
+
 app.listen(4000,()=>{
     console.log("server is running on port 4000");
 })

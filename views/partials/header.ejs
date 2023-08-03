@@ -1,10 +1,31 @@
 
     <div class="header">
-        <div class="brand">WORK<span style="color: black;">OUT</span></div>
+        <div class="brand">WORK<span style="color: #686388;">OUT</span></div>
         <div class="nav-links">
-            <a href="/">HOME</a>
+            <a href="/home">HOME</a>
             <a href="/goals">GOALS</a>
             <a href="/progress">PROGRESS</a>
-            <a href="/training">WORKOUT TRACKING</a>
+            <a href="/tracking">WORKOUT TRACKING</a>
+        </div>
+        <div class="bar">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="sidebar">
+            <i class="fa fa-close" style="color: red;"></i>
+            <a href="/home">HOME</a>
+            <a href="/goals">GOALS</a>
+            <a href="/progress">PROGRESS</a>
+            <a href="/tracking">WORKOUT TRACKING</a>
         </div>
     </div>
+    <script>
+        const ele = document.querySelector(".sidebar");
+        const bars = document.querySelector(".fa-bars");
+        const close = document.querySelector(".fa-close");
+        bars.addEventListener("click", () => {
+            ele.classList.add("show-content");
+        });
+        close.addEventListener("click", () => {
+            ele.classList.remove("show-content");
+        });
+    </script>

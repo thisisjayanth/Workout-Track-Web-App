@@ -4,7 +4,7 @@ const ensureAuth = (req,res, next)=>{
 }
 const ensureGuest = (req,res,next)=>{
     if(!req.isAuthenticated()) return next();
-        res.redirect('/');
+        res.redirect('/home');
 }
 module.exports = {
     ensureAuth,
